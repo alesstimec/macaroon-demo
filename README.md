@@ -1,0 +1,1 @@
+# Macaroon demo golang project
