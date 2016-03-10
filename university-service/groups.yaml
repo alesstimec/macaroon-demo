@@ -1,0 +1,10 @@
+groups:
+  student:
+    - alice
+    - bob
+  professor:
+    - ivan
+    - dusan
+    - franc
+    - neza
+    - bostjan

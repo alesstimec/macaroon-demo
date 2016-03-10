@@ -17,7 +17,6 @@ import (
 )
 
 const (
-	usernamePath   = "username"
 	usernameCaveat = "username"
 	usernameFile   = "user.yaml"
 )
@@ -98,10 +97,14 @@ func (h *handler) checkThirdPartyCaveat(req *http.Request, cavId, cav string) ([
 	if err != nil {
 		return nil, err
 	}
+	// this service knows how to discharge 3rd party "is-user" caveats
+	// addressed to it.
 	switch cond {
 	case "is-user":
 		username := readUsername()
-		return []checkers.Caveat{checkers.DeclaredCaveat("username", username)}, nil
+		// we are returning a declared caveat, which means that the "username" will
+		// be returned to the target service when calling the httpbakery.CheckRequest method.
+		return []checkers.Caveat{checkers.DeclaredCaveat(usernameCaveat, username)}, nil
 	default:
 		return nil, checkers.ErrCaveatNotRecognized
 	}
