@@ -11,7 +11,7 @@ import (
 	"gopkg.in/macaroon-bakery.v1/bakery"
 	"gopkg.in/macaroon-bakery.v1/httpbakery"
 
-	"github.com/alesstimec/macaroon-demo/target-service/handler"
+	"github.com/alesstimec/macaroon-demo/university-service/handler"
 )
 
 const (
@@ -43,7 +43,7 @@ func main() {
 	fmt.Println("keyring created")
 
 	svc, err := bakery.NewService(bakery.NewServiceParams{
-		Location: "target-service",
+		Location: "university-service",
 		Key:      keypair,
 		Locator:  keyring,
 	})
@@ -62,5 +62,5 @@ func main() {
 	h.RegisterHandlers(r)
 
 	fmt.Println("listening...")
-	http.ListenAndServe(":8080", r)
+	http.ListenAndServe(":9081", r)
 }
